@@ -1,0 +1,63 @@
+# Nguồn ảnh
+
+Ảnh sản phẩm và banner lấy từ **Wikimedia Commons** theo giấy phép tự do (CC0 / Public domain / CC BY / CC BY-SA).
+Ảnh đã được thu nhỏ (rộng ~800px; banner ~1920px). Ảnh CC BY / CC BY-SA yêu cầu ghi tên tác giả như dưới đây.
+
+| Tệp | Sản phẩm | Ảnh gốc | Tác giả | Giấy phép |
+|---|---|---|---|---|
+| public/images/banner.jpg | Banner trang chủ | [Flower bouquets in shopping centre, Brisbane, 2024.jpg](https://commons.wikimedia.org/wiki/File:Flower_bouquets_in_shopping_centre,_Brisbane,_2024.jpg) | Chris Olszewski | CC BY-SA 4.0 |
+| bo-hong-phan-sweet-day.jpg | Bó hồng phấn Sweet Day | [Bouquet de roses roses.jpg](https://commons.wikimedia.org/wiki/File:Bouquet_de_roses_roses.jpg) | Jebulon | CC BY-SA 3.0 |
+| bo-huong-duong-sunshine.jpg | Bó hướng dương Sunshine | [Still Life - Vase with Twelve Sunflowers - My Dream.jpg](https://commons.wikimedia.org/wiki/File:Still_Life_-_Vase_with_Twelve_Sunflowers_-_My_Dream.jpg) | Vincent van Gogh | Public domain |
+| gio-hoa-cuc-hoa-mi.jpg | Giỏ hoa cúc họa mi | [Bouquet of Daisies and Peonies by Eugene Henri Cauchois.jpg](https://commons.wikimedia.org/wiki/File:Bouquet_of_Daisies_and_Peonies_by_Eugene_Henri_Cauchois.jpg) | Eugène Henri Cauchois | Public domain |
+| bo-tulip-ha-lan-mix.jpg | Bó tulip Hà Lan mix | [Colorful tulip bouquets (Unsplash).jpg](https://commons.wikimedia.org/wiki/File:Colorful_tulip_bouquets_(Unsplash).jpg) | John-Mark Kuznietsov mrrrk_smith | CC0 |
+| bo-cam-chuong-hong-ngot-ngao.jpg | Bó cẩm chướng hồng Ngọt Ngào | [Bouquet of pink carnations.jpg](https://commons.wikimedia.org/wiki/File:Bouquet_of_pink_carnations.jpg) | Kain Kalju | CC BY 2.0 |
+| bo-dong-tien-ruc-ro.jpg | Bó đồng tiền rực rỡ | [A bouquet of Gerberas on Ermou Street.jpg](https://commons.wikimedia.org/wiki/File:A_bouquet_of_Gerberas_on_Ermou_Street.jpg) | George E. Koronaios | CC BY-SA 4.0 |
+| gio-hong-cam-nang-luong.jpg | Giỏ hồng cam Năng Lượng | [Orange-pink shrub rose flower, by baby-bear.org.jpg](https://commons.wikimedia.org/wiki/File:Orange-pink_shrub_rose_flower,_by_baby-bear.org.jpg) | Natalka Ukraine | CC BY 4.0 |
+| bo-cat-tuong-tim-pastel.jpg | Bó cát tường tím Pastel | [A bouquet of light pink and white Lisianthus flowers.jpg](https://commons.wikimedia.org/wiki/File:A_bouquet_of_light_pink_and_white_Lisianthus_flowers.jpg) | George E. Koronaios | CC BY-SA 4.0 |
+| bo-mau-don-hong-kieu-sa.jpg | Bó mẫu đơn hồng Kiêu Sa | [Bertha Wegmann Still life with iris and peonies in a vase 1906.jpg](https://commons.wikimedia.org/wiki/File:Bertha_Wegmann_Still_life_with_iris_and_peonies_in_a_vase_1906.jpg) | Bertha Wegmann | Public domain |
+| hop-hoa-mix-bat-ngo.jpg | Hộp hoa mix Bất Ngờ | [FLOWERS Mixed (2213955920).jpg](https://commons.wikimedia.org/wiki/File:FLOWERS_Mixed_(2213955920).jpg) | Kaz Andrew from Edmonton,Alberta, Canada | CC BY-SA 2.0 |
+| bo-99-hong-do-forever.jpg | Bó 99 hồng đỏ Forever | [Roses are red.jpg](https://commons.wikimedia.org/wiki/File:Roses_are_red.jpg) | Kristig | CC BY 3.0 |
+| bo-hong-do-classic-20-bong.jpg | Bó hồng đỏ Classic 20 bông | [Bouquet of red and yellow roses.jpg](https://commons.wikimedia.org/wiki/File:Bouquet_of_red_and_yellow_roses.jpg) | Karthika Manikandan | CC0 |
+| hop-hong-kem-love-box.jpg | Hộp hồng kem Love Box | [Rosa Garden of Roses 2022-07-04 3120.jpg](https://commons.wikimedia.org/wiki/File:Rosa_Garden_of_Roses_2022-07-04_3120.jpg) | Salicyna | CC BY-SA 4.0 |
+| bo-baby-trang-tinh-khoi.jpg | Bó baby trắng tinh khôi | [Gypsophila paniculata.jpg](https://commons.wikimedia.org/wiki/File:Gypsophila_paniculata.jpg) | PiPi | Public domain |
+| bo-hong-trang-tinh-khoi.jpg | Bó hồng trắng Tinh Khôi | [Bouquet of roses in front of painting.jpg](https://commons.wikimedia.org/wiki/File:Bouquet_of_roses_in_front_of_painting.jpg) | Pittigrilli | CC BY-SA 4.0 |
+| bo-hong-tim-thuy-chung.jpg | Bó hồng tím Thủy Chung | [Bouquet-3175315 1920.jpg](https://commons.wikimedia.org/wiki/File:Bouquet-3175315_1920.jpg) | Yuri_B | CC0 |
+| bo-tulip-do-say-dam.jpg | Bó tulip đỏ Say Đắm | [A bouquet of red tulips in a basket.jpg](https://commons.wikimedia.org/wiki/File:A_bouquet_of_red_tulips_in_a_basket.jpg) | George E. Koronaios | CC BY-SA 4.0 |
+| bo-hong-xanh-ocean.jpg | Bó hồng xanh Ocean | [Blue rose-artificially coloured.jpg](https://commons.wikimedia.org/wiki/File:Blue_rose-artificially_coloured.jpg) | Noumenon | CC BY-SA 3.0 |
+| gio-hong-do-trai-tim.jpg | Giỏ hồng đỏ Trái Tim | [Gesteck in Herzform.JPG](https://commons.wikimedia.org/wiki/File:Gesteck_in_Herzform.JPG) | 4028mdk09 | CC BY-SA 3.0 |
+| bo-hong-vang-nang-mai.jpg | Bó hồng vàng Nắng Mai | [Henri Fantin-Latour (1836-1904) - Yellow Roses - 2-1973 - Southampton City Art Gallery.jpg](https://commons.wikimedia.org/wiki/File:Henri_Fantin-Latour_(1836-1904)_-_Yellow_Roses_-_2-1973_-_Southampton_City_Art_Gallery.jpg) | Henri Fantin-Latour | Public domain |
+| ke-hoa-hong-phat-2-tang.jpg | Kệ hoa Hồng Phát 2 tầng | [Arrangement of lilies and roses, Arundel Cathedral.jpg](https://commons.wikimedia.org/wiki/File:Arrangement_of_lilies_and_roses,_Arundel_Cathedral.jpg) | Margaret Anne Clarke | CC BY-SA 4.0 |
+| ke-hoa-dai-cat.jpg | Kệ hoa Đại Cát | [Purple and yellow arrangement of flowers by Pembroke Lodge - geograph.org.uk - 3954273.jpg](https://commons.wikimedia.org/wiki/File:Purple_and_yellow_arrangement_of_flowers_by_Pembroke_Lodge_-_geograph.org.uk_-_3954273.jpg) | David Howard | CC BY-SA 2.0 |
+| ke-lan-ho-diep-thinh-vuong.jpg | Kệ lan hồ điệp Thịnh Vượng | [Phalaenopsis Orchid Floral Arrangement.jpg](https://commons.wikimedia.org/wiki/File:Phalaenopsis_Orchid_Floral_Arrangement.jpg) | Senarathane | CC BY-SA 3.0 |
+| ke-hoa-van-su-nhu-y.jpg | Kệ hoa Vạn Sự Như Ý | [Косарики у Немішаєві 02.jpg](https://commons.wikimedia.org/wiki/File:%D0%9A%D0%BE%D1%81%D0%B0%D1%80%D0%B8%D0%BA%D0%B8_%D1%83_%D0%9D%D0%B5%D0%BC%D1%96%D1%88%D0%B0%D1%94%D0%B2%D1%96_02.jpg) | Сарапулов | CC BY 4.0 |
+| ke-huong-duong-phu-quy.jpg | Kệ hướng dương Phú Quý | [Radiant sunflowers (Unsplash).jpg](https://commons.wikimedia.org/wiki/File:Radiant_sunflowers_(Unsplash).jpg) | Ryan Waxberg ryanwaxberg | CC0 |
+| lang-hoa-khai-truong-hong-phat.jpg | Lẵng hoa Khai Trương Hồng Phát | [Basket of Flowers - Li Song.jpg](https://commons.wikimedia.org/wiki/File:Basket_of_Flowers_-_Li_Song.jpg) | Li Song | Public domain |
+| chau-kim-tien-tai-loc.jpg | Chậu kim tiền Tài Lộc | [Zamioculcas zamiifolia 1.jpg](https://commons.wikimedia.org/wiki/File:Zamioculcas_zamiifolia_1.jpg) | User:WeFt | CC BY-SA 3.0 |
+| ke-hoa-dong-tien-thanh-cong.jpg | Kệ hoa đồng tiền Thành Công | [Gerbera Daisy -- Gerbera Garvinea 'Sweet Glow'.jpg](https://commons.wikimedia.org/wiki/File:Gerbera_Daisy_--_Gerbera_Garvinea_%27Sweet_Glow%27.jpg) | Jim Evans | CC BY-SA 4.0 |
+| vong-hoa-trang-vinh-hang.jpg | Vòng hoa trắng Vĩnh Hằng | [White cross wreath in Hong Kong.jpg](https://commons.wikimedia.org/wiki/File:White_cross_wreath_in_Hong_Kong.jpg) | Peachyeung316 | CC BY-SA 4.0 |
+| ke-hoa-cuc-trang-tien-biet.jpg | Kệ hoa cúc trắng Tiễn Biệt | [Chrysanthemum flowers, specifically a variety known for its bi-color blooms with striped pink and white petals.jpg](https://commons.wikimedia.org/wiki/File:Chrysanthemum_flowers,_specifically_a_variety_known_for_its_bi-color_blooms_with_striped_pink_and_white_petals.jpg) | Shagil Muzhappilangad | CC BY-SA 4.0 |
+| ke-hoa-lan-trang-an-nhien.jpg | Kệ hoa lan trắng An Nhiên | [Phalaenopsis Cultivar White 01.jpg](https://commons.wikimedia.org/wiki/File:Phalaenopsis_Cultivar_White_01.jpg) | Uoaei1 | CC BY-SA 4.0 |
+| vong-hoa-cuc-vang-tuong-nho.jpg | Vòng hoa cúc vàng Tưởng Nhớ | [Chrysanthemum November 2015 Sochi.JPG](https://commons.wikimedia.org/wiki/File:Chrysanthemum_November_2015_Sochi.JPG) | SKas | CC BY-SA 4.0 |
+| ke-hoa-ly-trang-thanh-than.jpg | Kệ hoa ly trắng Thanh Thản | [Lilium regale, regal lily in Essex, England (cropped).jpg](https://commons.wikimedia.org/wiki/File:Lilium_regale,_regal_lily_in_Essex,_England_(cropped).jpg) | Acabashi | CC BY-SA 4.0 |
+| gio-hoa-chia-buon-binh-yen.jpg | Giỏ hoa chia buồn Bình Yên | [Japanese Festival in Vigadó. Barbiere Royal flower arrangement. White. - Budapest.JPG](https://commons.wikimedia.org/wiki/File:Japanese_Festival_in_Vigad%C3%B3._Barbiere_Royal_flower_arrangement._White._-_Budapest.JPG) | Globetrotter19 | CC BY-SA 3.0 |
+| bo-cuc-trang-thanh-kinh.jpg | Bó cúc trắng Thành Kính | [White Chrysanthemum (35671).jpg](https://commons.wikimedia.org/wiki/File:White_Chrysanthemum_(35671).jpg) | SarKaLay စာကလေး | CC BY-SA 4.0 |
+| binh-hoa-lily-de-ban.jpg | Bình hoa lily để bàn | [Jan Bruegel (I) - Bouquet of Flowers in a Ceramic Vase.jpg](https://commons.wikimedia.org/wiki/File:Jan_Bruegel_(I)_-_Bouquet_of_Flowers_in_a_Ceramic_Vase.jpg) | Jan Brueghel the Elder | Public domain |
+| gio-hoa-hong-mini.jpg | Giỏ hoa hồng mini | [Basket of Roses by Henri Fantin-Latour 1885.jpg](https://commons.wikimedia.org/wiki/File:Basket_of_Roses_by_Henri_Fantin-Latour_1885.jpg) | Henri Fantin-Latour | CC BY-SA 4.0 |
+| chau-lan-ho-diep-3-canh.jpg | Chậu lan hồ điệp 3 cành | [Orchid 2021 001 Phalaenopsis amabilis Blume.jpg](https://commons.wikimedia.org/wiki/File:Orchid_2021_001_Phalaenopsis_amabilis_Blume.jpg) | Adam S. Keck | CC BY-SA 4.0 |
+| binh-cam-tu-cau-xanh.jpg | Bình cẩm tú cầu xanh | [Rose hydrangea calla wedding bouquet.jpg](https://commons.wikimedia.org/wiki/File:Rose_hydrangea_calla_wedding_bouquet.jpg) | Photo by and (c)2007 Jina Lee | CC BY-SA 3.0 |
+| hop-hoa-sap-thom.jpg | Hộp hoa sáp thơm | [Van Gogh - Vase of Roses.jpg](https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Vase_of_Roses.jpg) | Vincent van Gogh | Public domain |
+| binh-tulip-vang.jpg | Bình tulip vàng | [Small yellow tulip.jpg](https://commons.wikimedia.org/wiki/File:Small_yellow_tulip.jpg) | Mister rf | CC BY-SA 4.0 |
+| binh-cam-chuong-mix.jpg | Bình cẩm chướng mix | [Bouquet d’œillets - Le Jort-Dupuis - musée d'art et d'histoire de Saint-Brieuc DOC 270.jpg](https://commons.wikimedia.org/wiki/File:Bouquet_d%E2%80%99%C5%93illets_-_Le_Jort-Dupuis_-_mus%C3%A9e_d%27art_et_d%27histoire_de_Saint-Brieuc_DOC_270.jpg) | Pierre Dupuis | Public domain |
+| chau-sen-da-mini.jpg | Chậu sen đá mini | [Succulent pot collection.jpg](https://commons.wikimedia.org/wiki/File:Succulent_pot_collection.jpg) | Downtowngal | CC BY-SA 4.0 |
+| bo-oai-huong-kho.jpg | Bó oải hương khô | [Lavande lavender bouquet.jpg](https://commons.wikimedia.org/wiki/File:Lavande_lavender_bouquet.jpg) | Wisi eu | CC0 |
+| binh-thuy-tien-trang.jpg | Bình thủy tiên trắng | [White-daffodils Mužla.jpg](https://commons.wikimedia.org/wiki/File:White-daffodils_Mu%C5%BEla.jpg) | Stebunik | CC BY-SA 4.0 |
+| binh-mau-don-trang.jpg | Bình mẫu đơn trắng | [Ehrenbach, white peony.jpg](https://commons.wikimedia.org/wiki/File:Ehrenbach,_white_peony.jpg) | Gerda Arendt | CC0 |
+| hoa-cam-tay-co-dau-hong-trang.jpg | Hoa cầm tay cô dâu hồng trắng | [Bridal bouquet white pink rose stephanotis.jpg](https://commons.wikimedia.org/wiki/File:Bridal_bouquet_white_pink_rose_stephanotis.jpg) | Photo by and (c)2007 Jina Lee | CC BY-SA 3.0 |
+| hoa-cam-tay-baby-trang.jpg | Hoa cầm tay baby trắng | [Wedding bouquet white roses.jpg](https://commons.wikimedia.org/wiki/File:Wedding_bouquet_white_roses.jpg) | Rosendahl | Public domain |
+| hoa-cam-tay-cat-tuong.jpg | Hoa cầm tay cát tường | [Eustoma grandiflorum purple 02.jpg](https://commons.wikimedia.org/wiki/File:Eustoma_grandiflorum_purple_02.jpg) | Không rõ | CC BY-SA 2.0 |
+| hoa-cam-tay-mau-don-hong.jpg | Hoa cầm tay mẫu đơn hồng | [22, Bridal bouquet (Unsplash).jpg](https://commons.wikimedia.org/wiki/File:22,_Bridal_bouquet_(Unsplash).jpg) | Alvin Mahmudov alvinmahmudov | CC0 |
+| hoa-cai-ao-chu-re.jpg | Hoa cài áo chú rể | [Big Gay Wedding - Boutonniere Station.jpg](https://commons.wikimedia.org/wiki/File:Big_Gay_Wedding_-_Boutonniere_Station.jpg) | GaramondItalic | CC BY-SA 4.0 |
+| hoa-cam-tay-calla-trang.jpg | Hoa cầm tay calla trắng | [Rose hydrangea calla wedding bouquet.jpg](https://commons.wikimedia.org/wiki/File:Rose_hydrangea_calla_wedding_bouquet.jpg) | Photo by and (c)2007 Jina Lee | CC BY-SA 3.0 |
+| hoa-cam-tay-huong-duong-rustic.jpg | Hoa cầm tay hướng dương Rustic | [Flower Arrangement (6149415322).jpg](https://commons.wikimedia.org/wiki/File:Flower_Arrangement_(6149415322).jpg) | daryl_mitchell from Saskatoon, Saskatchewan, Canada | CC BY-SA 2.0 |
+| cong-hoa-cuoi-mini.jpg | Cổng hoa cưới mini | [Abingdon OurLady&StEdmund SouthPorch.jpg](https://commons.wikimedia.org/wiki/File:Abingdon_OurLady%26StEdmund_SouthPorch.jpg) | Motacilla | CC BY-SA 4.0 |
+| hoa-co-tay-phu-dau.jpg | Hoa cổ tay phù dâu | [Wrist corsages.jpg](https://commons.wikimedia.org/wiki/File:Wrist_corsages.jpg) | StretchyBill | CC BY-SA 2.0 |

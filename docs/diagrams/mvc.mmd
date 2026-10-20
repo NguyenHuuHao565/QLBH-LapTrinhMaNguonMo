@@ -1,0 +1,10 @@
+flowchart LR
+    B["🌐 Trình duyệt"] -->|HTTP request| R["routes/web.php<br/>(38 named routes)"]
+    R --> M["Middleware<br/>web · CSRF · auth · admin"]
+    M --> CT["Controller<br/>(+ Form Request validation)"]
+    CT --> S["Service<br/>Cart · OrderPlacer<br/>OrderStatusUpdater"]
+    CT --> MD["Model (Eloquent)<br/>User · Category · Product<br/>Order · OrderItem"]
+    S --> MD
+    MD <--> DB[("MySQL 8.4<br/>quanlybanhoa")]
+    CT -->|dữ liệu| V["View (Blade)<br/>layout · components"]
+    V -->|HTML| B

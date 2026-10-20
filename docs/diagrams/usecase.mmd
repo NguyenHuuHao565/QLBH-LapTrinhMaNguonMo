@@ -1,0 +1,25 @@
+flowchart LR
+    G["👤 Khách vãng lai"]
+    C["👤 Khách hàng<br/>(CUSTOMER)"]
+    A["👤 Quản trị viên<br/>(ADMIN)"]
+    subgraph SYS["Hệ thống Bloomy Flower Shop"]
+        direction TB
+        U1(["Xem trang chủ, danh mục"])
+        U2(["Tìm kiếm, lọc, sắp xếp hoa"])
+        U3(["Xem chi tiết sản phẩm"])
+        U4(["Quản lý giỏ hàng"])
+        U5(["Đăng ký / Đăng nhập"])
+        U6(["Đặt hàng COD"])
+        U7(["Xem lịch sử & chi tiết đơn"])
+        U8(["Xem thông tin tài khoản"])
+        U9(["Xem dashboard thống kê"])
+        U10(["Quản lý danh mục"])
+        U11(["Quản lý sản phẩm + ảnh"])
+        U12(["Quản lý đơn & trạng thái"])
+        U13(["Xem khách hàng & lịch sử mua"])
+    end
+    G --- U1 & U2 & U3 & U4 & U5
+    C --- U6 & U7 & U8
+    C -. "kế thừa" .-> G
+    A --- U9 & U10 & U11 & U12 & U13
+    A -. "kế thừa" .-> C

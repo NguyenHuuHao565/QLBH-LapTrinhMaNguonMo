@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor K as Khách hàng
+    participant CC as CheckoutController
+    participant OP as OrderPlacer
+    participant DB as MySQL
+    K->>CC: POST /thanh-toan (người nhận, idempotency_key, CSRF)
+    CC->>CC: Validate (CheckoutRequest)
+    CC->>DB: Đã có đơn với idempotency_key này?
+    alt Gửi lặp
+        CC-->>K: Chuyển tới đơn đã tạo trước đó
+    end
+    CC->>OP: place(user, giỏ hàng, người nhận, key)
+    OP->>DB: BEGIN TRANSACTION
+    OP->>DB: SELECT … FROM products FOR UPDATE (khóa dòng)
+    OP->>OP: Kiểm tra đang bán, tồn kho, lấy giá từ DB
+    OP->>DB: INSERT orders
+    loop Mỗi sản phẩm
+        OP->>DB: INSERT order_items (tên, giá lúc mua)
+        OP->>DB: UPDATE products SET stock = stock - qty WHERE stock >= qty
+    end
+    OP->>DB: UPDATE orders SET total = SUM(subtotal)
+    alt Lỗi bất kỳ
+        OP->>DB: ROLLBACK
+        CC-->>K: Thông báo lỗi, giữ giỏ hàng
+    else Thành công
+        OP->>DB: COMMIT
+        CC-->>K: Trang “Đặt hàng thành công”
+    end

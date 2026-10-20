@@ -1,0 +1,15 @@
+stateDiagram-v2
+    [*] --> pending : Khách đặt hàng (COD, unpaid)
+    pending --> confirmed : Admin xác nhận
+    confirmed --> shipping : Giao cho shipper
+    shipping --> completed : Giao xong, thu tiền (paid)
+    pending --> cancelled : Hủy (hoàn kho)
+    confirmed --> cancelled : Hủy (hoàn kho)
+    shipping --> cancelled : Giao thất bại (hoàn kho)
+    completed --> [*]
+    cancelled --> [*]
+    pending : Chờ xác nhận
+    confirmed : Đã xác nhận
+    shipping : Đang giao
+    completed : Hoàn thành
+    cancelled : Đã hủy

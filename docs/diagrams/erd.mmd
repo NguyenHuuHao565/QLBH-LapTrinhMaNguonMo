@@ -1,0 +1,58 @@
+erDiagram
+    USERS ||--o{ ORDERS : "đặt"
+    ORDERS ||--|{ ORDER_ITEMS : "gồm"
+    PRODUCTS ||--o{ ORDER_ITEMS : "được mua trong"
+    CATEGORIES ||--o{ PRODUCTS : "chứa"
+    USERS {
+        bigint id PK
+        string name
+        string email UK
+        string password "bcrypt hash"
+        string phone
+        string address
+        string role "ADMIN | CUSTOMER"
+    }
+    CATEGORIES {
+        bigint id PK
+        string name
+        string slug UK
+        text description
+        boolean is_active
+    }
+    PRODUCTS {
+        bigint id PK
+        bigint category_id FK "RESTRICT"
+        string name
+        string slug UK
+        text description
+        decimal price
+        decimal sale_price "nullable"
+        int stock
+        string image
+        boolean is_active
+    }
+    ORDERS {
+        bigint id PK
+        string code UK
+        string idempotency_key UK
+        bigint user_id FK "SET NULL"
+        string recipient_name
+        string recipient_phone
+        string shipping_address
+        text note
+        date delivery_date
+        decimal total
+        string payment_method "cod"
+        string payment_status "unpaid | paid"
+        string status
+        timestamp placed_at
+    }
+    ORDER_ITEMS {
+        bigint id PK
+        bigint order_id FK "CASCADE"
+        bigint product_id FK "SET NULL"
+        string product_name "lưu lúc mua"
+        decimal price "đơn giá lúc mua"
+        int quantity
+        decimal subtotal
+    }

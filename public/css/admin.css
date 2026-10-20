@@ -1,0 +1,49 @@
+/* Bloomy — khu vực quản trị (giao diện riêng, khác trang khách hàng) */
+
+body.admin { background: #f4f6f8; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+
+.admin-topbar { background: #2f3a2e; }
+.admin-topbar .navbar-brand { font-weight: 600; }
+.admin-topbar .navbar-brand i { color: #f4cdd5; }
+.admin-topbar a { text-decoration: none; }
+
+.admin-shell { display: flex; min-height: calc(100vh - 56px); }
+
+.admin-sidebar {
+    width: 230px;
+    flex-shrink: 0;
+    background: #fff;
+    border-right: 1px solid #e3e7eb;
+    padding: 1rem .75rem;
+}
+.admin-sidebar a {
+    display: block;
+    padding: .6rem .9rem;
+    border-radius: 8px;
+    color: #334;
+    text-decoration: none;
+    margin-bottom: .2rem;
+}
+.admin-sidebar a i { margin-right: .5rem; }
+.admin-sidebar a:hover { background: #eef2ee; }
+.admin-sidebar a.active { background: #557852; color: #fff; }
+
+.admin-main { flex: 1; padding: 1.8rem; min-width: 0; }
+
+.stat-card { border: 0; box-shadow: 0 1px 3px rgba(0, 0, 0, .06); }
+.stat-icon { font-size: 1.8rem; color: #557852; background: #e6efe2; width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center; }
+.stat-value { font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
+
+/* Ảnh sản phẩm (ảnh thật hoặc minh họa SVG thay thế) */
+.product-media { aspect-ratio: 1; overflow: hidden; background: #f4ece1; }
+.product-media img,
+.product-media .flower-art { width: 100%; height: 100%; object-fit: cover; display: block; }
+.admin-thumb { width: 52px; border-radius: 8px; }
+.admin-preview { border-radius: 10px; }
+
+@media (max-width: 767.98px) {
+    .admin-shell { flex-direction: column; }
+    .admin-sidebar { width: auto; border-right: 0; border-bottom: 1px solid #e3e7eb; display: flex; gap: .3rem; overflow-x: auto; }
+    .admin-sidebar a { white-space: nowrap; margin: 0; }
+    .admin-main { padding: 1.2rem; }
+}
