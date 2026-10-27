@@ -2,7 +2,7 @@
 
 Website bán hoa tươi trực tuyến — đồ án môn **Lập trình mã nguồn mở**.
 
-Khách hàng xem và tìm hoa, thêm vào giỏ, đặt hàng thanh toán khi nhận (COD) và theo dõi đơn.
+Khách hàng xem và tìm hoa, thêm vào giỏ, đặt hàng thanh toán khi nhận (COD) hoặc chuyển khoản qua mã QR, theo dõi và tự hủy đơn khi còn chờ xác nhận.
 Quản trị viên quản lý danh mục, sản phẩm (kèm ảnh), đơn hàng, khách hàng và xem thống kê doanh thu.
 
 **Công nghệ:** Laravel 13 · PHP 8.3 · MySQL 8.4 · Blade · Bootstrap 5 (CDN) · CSS · JavaScript thuần.
@@ -132,7 +132,9 @@ Mật khẩu luôn được lưu dạng hash bcrypt. Khách mới có thể tự
 | Chi tiết sản phẩm, trạng thái còn/hết hàng | ✔ | ✔ | ✔ |
 | Giỏ hàng (thêm, sửa số lượng, xóa) | ✔ | ✔ | ✔ |
 | Đăng ký, đăng nhập | ✔ | — | — |
-| Đặt hàng COD, trang xác nhận | | ✔ | ✔ |
+| Đặt hàng COD hoặc chuyển khoản (mã QR), trang xác nhận | | ✔ | ✔ |
+| Tự hủy đơn khi còn *Chờ xác nhận* và chưa thanh toán (hoàn kho ngay) | | ✔ | ✔ |
+| Trang Liên hệ có bản đồ (Leaflet + OpenStreetMap) | ✔ | ✔ | ✔ |
 | Trang tài khoản, lịch sử & chi tiết **đơn của mình** | | ✔ | ✔ |
 | Dashboard thống kê | | | ✔ |
 | Quản lý đơn: tìm theo mã, lọc trạng thái/ngày, cập nhật trạng thái | | | ✔ |
@@ -141,7 +143,8 @@ Mật khẩu luôn được lưu dạng hash bcrypt. Khách mới có thể tự
 
 **Quy tắc trạng thái đơn:** `Chờ xác nhận → Đã xác nhận → Đang giao → Hoàn thành`; từ 3 trạng thái đầu có thể
 chuyển sang `Đã hủy`. `Hoàn thành` và `Đã hủy` là trạng thái cuối. Hủy đơn → hoàn lại tồn kho.
-Hoàn thành → đơn COD được đánh dấu *Đã thanh toán*.
+Hoàn thành → đơn COD được đánh dấu *Đã thanh toán*. Đơn chuyển khoản phải được admin bấm
+*Xác nhận đã nhận chuyển khoản* trước khi được Hoàn thành.
 
 **Quy tắc doanh thu:** tổng tiền các đơn **Hoàn thành**. Đơn **Đã hủy** không bao giờ được tính.
 
@@ -168,7 +171,7 @@ resources/views/
 └── admin/                  dashboard, categories/, products/, orders/, customers/
 routes/web.php              38 route có tên (named routes)
 public/css, public/js       bloomy.css, admin.css, bloomy.js
-tests/Feature               70 test tự động
+tests/Feature               81 test tự động
 ```
 
 ## 7. Quan hệ database
@@ -216,11 +219,13 @@ Tiền dùng `DECIMAL(12,0)` (đồng Việt Nam không có phần lẻ).
 php artisan test
 ```
 
-70 test (Feature) chạy trên SQLite trong bộ nhớ — **không đụng tới database MySQL thật**.
+81 test (Feature) chạy trên SQLite trong bộ nhớ — **không đụng tới database MySQL thật**.
 
 ## 11. Hạn chế hiện tại
 
-- Chỉ hỗ trợ thanh toán COD; chưa có thanh toán online, phí vận chuyển, mã giảm giá.
+- Thanh toán: COD và chuyển khoản bằng **mã QR tĩnh** (`public/images/payment-qr.jpg`, ví MoMo của chủ shop) — khách tự nhập số tiền
+  và mã đơn, admin đối soát và xác nhận thủ công. Chưa tích hợp cổng thanh toán tự động (VNPay/MoMo API cần mã merchant).
+- Chưa có phí vận chuyển, mã giảm giá.
 - Múi giờ ứng dụng đang là **UTC** → giờ đặt hàng hiển thị lệch 7 tiếng so với giờ Việt Nam và bộ lọc ngày trong quản trị
   tính theo ngày UTC. Có thể sửa bằng `APP_TIMEZONE=Asia/Ho_Chi_Minh` (chưa áp dụng).
 - Ảnh sản phẩm mẫu lấy từ Wikimedia Commons, chỉ mang tính minh họa (một số ảnh là tranh vẽ hoa, không đúng hoàn toàn với tên sản phẩm); admin có thể thay bằng ảnh thật qua trang quản trị.

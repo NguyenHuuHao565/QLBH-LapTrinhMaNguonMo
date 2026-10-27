@@ -56,7 +56,7 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('error', 'Giỏ hàng của bạn đang trống.');
         }
 
-        $shipping = $request->safe()->only(['recipient_name', 'recipient_phone', 'shipping_address', 'note', 'delivery_date']);
+        $shipping = $request->safe()->only(['recipient_name', 'recipient_phone', 'shipping_address', 'note', 'delivery_date', 'payment_method']);
 
         try {
             $order = $placer->place($user, $this->cart->items(), $shipping, $key);

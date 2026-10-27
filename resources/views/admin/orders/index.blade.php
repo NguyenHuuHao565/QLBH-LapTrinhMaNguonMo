@@ -67,7 +67,10 @@
                             <td class="text-center">{{ $order->items_count }}</td>
                             <td class="text-end text-nowrap">{{ number_format($order->total, 0, ',', '.') }}₫</td>
                             <td><x-admin-order-status :order="$order" /></td>
-                            <td class="small">{{ $order->paymentStatusLabel() }}</td>
+                            <td class="small">
+                                {{ $order->isBankTransfer() ? 'Chuyển khoản' : 'COD' }}
+                                <div class="{{ $order->isPaid() ? 'text-success' : 'text-muted' }}">{{ $order->paymentStatusLabel() }}</div>
+                            </td>
                         </tr>
                     @empty
                         <tr><td colspan="8" class="text-center text-muted py-4">Không có đơn hàng phù hợp.</td></tr>

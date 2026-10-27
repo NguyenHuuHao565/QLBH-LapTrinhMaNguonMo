@@ -65,12 +65,23 @@
                             </div>
 
                             <h2 class="info-card-title mt-4">Thanh toán</h2>
-                            <div class="form-check payment-option">
-                                <input class="form-check-input" type="radio" name="payment_method" id="pay_cod" value="cod" checked>
-                                <label class="form-check-label" for="pay_cod">
-                                    <strong>Thanh toán khi nhận hàng (COD)</strong>
-                                    <span class="d-block text-muted small">Bạn trả tiền mặt cho nhân viên giao hoa khi nhận hàng.</span>
-                                </label>
+                            <div class="d-grid gap-2">
+                                <div class="form-check payment-option">
+                                    <input class="form-check-input" type="radio" name="payment_method" id="pay_cod" value="cod"
+                                           @checked(old('payment_method', 'cod') === 'cod')>
+                                    <label class="form-check-label" for="pay_cod">
+                                        <strong><i class="bi bi-cash-coin me-1"></i> Thanh toán khi nhận hàng (COD)</strong>
+                                        <span class="d-block text-muted small">Trả tiền mặt cho nhân viên giao hoa khi nhận hàng.</span>
+                                    </label>
+                                </div>
+                                <div class="form-check payment-option">
+                                    <input class="form-check-input" type="radio" name="payment_method" id="pay_bank" value="bank_transfer"
+                                           @checked(old('payment_method') === 'bank_transfer')>
+                                    <label class="form-check-label" for="pay_bank">
+                                        <strong><i class="bi bi-qr-code me-1"></i> Chuyển khoản (MoMo / app ngân hàng)</strong>
+                                        <span class="d-block text-muted small">Sau khi đặt, quét mã QR của cửa hàng và chuyển đúng số tiền, ghi mã đơn vào nội dung. Đơn được xử lý khi cửa hàng nhận được tiền.</span>
+                                    </label>
+                                </div>
                             </div>
                             @error('payment_method') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
                         </div>

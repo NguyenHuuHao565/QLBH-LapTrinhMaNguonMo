@@ -201,7 +201,7 @@ class CheckoutTest extends TestCase
                 'recipient_name' => '',
                 'recipient_phone' => '12345',
                 'shipping_address' => '',
-                'payment_method' => 'bank_transfer',
+                'payment_method' => 'bitcoin',
                 'delivery_date' => '2000-01-01',
                 'note' => str_repeat('a', 501),
                 'idempotency_key' => 'khong-phai-uuid',

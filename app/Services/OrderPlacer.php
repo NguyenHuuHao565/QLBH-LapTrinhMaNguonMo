@@ -54,7 +54,7 @@ class OrderPlacer
                 }
             }
 
-            $order = new Order([...$shipping, 'user_id' => $user->id, 'payment_method' => 'cod']);
+            $order = new Order([...$shipping, 'user_id' => $user->id, 'payment_method' => $shipping['payment_method'] ?? 'cod']);
             $order->idempotency_key = $idempotencyKey;
             $order->save();
 

@@ -22,6 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('change', () => { input.value = clamp(input.value); });
     });
 
+    // Hộp xác nhận cho thao tác khó hoàn tác (ví dụ hủy đơn)
+    document.querySelectorAll('form[data-confirm]').forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            if (!confirm(form.dataset.confirm)) event.preventDefault();
+        });
+    });
+
     // Form đặt hàng: khóa nút sau lần bấm đầu để tránh double-click
     // (server vẫn chống trùng bằng idempotency key, đây chỉ là lớp bảo vệ phía giao diện)
     document.querySelectorAll('form[data-submit-once]').forEach((form) => {

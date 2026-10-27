@@ -61,9 +61,14 @@
                 <div class="card-header bg-white fw-semibold">Trạng thái</div>
                 <div class="card-body">
                     <p class="mb-2">Hiện tại: <x-admin-order-status :order="$order" class="fs-6" /></p>
-                    <p class="small text-muted mb-3">
-                        Thanh toán: {{ $order->paymentMethodLabel() }} — <strong>{{ $order->paymentStatusLabel() }}</strong>
-                    </p>
+                    @if ($order->status === 'cancelled')
+                        <div class="alert alert-secondary small py-2">
+                            Hủy bởi <strong>{{ $order->cancelled_by === \App\Models\User::ROLE_CUSTOMER ? 'khách hàng' : 'cửa hàng' }}</strong>
+                            @if ($order->cancelled_at) lúc {{ $order->cancelled_at->format('d/m/Y H:i') }}@endif
+                            @if ($order->cancel_reason)<br>Lý do: {{ $order->cancel_reason }}@endif
+                            @if ($order->isPaid())<br><strong class="text-danger">Khách đã chuyển khoản — cần hoàn tiền.</strong>@endif
+                        </div>
+                    @endif
 
                     @if ($order->allowedTransitions())
                         <form action="{{ route('admin.orders.update-status', $order) }}" method="post"
@@ -78,6 +83,9 @@
                                 @endforeach
                             </select>
                             @error('status') <div class="invalid-feedback d-block mb-2">{{ $message }}</div> @enderror
+                            <label for="cancel_reason" class="form-label small text-muted mb-1">Lý do (chỉ dùng khi hủy đơn)</label>
+                            <input type="text" id="cancel_reason" name="cancel_reason" maxlength="255" class="form-control form-control-sm mb-2"
+                                   placeholder="VD: Khách không nghe máy xác nhận">
                             <button type="submit" class="btn btn-primary w-100"><i class="bi bi-arrow-repeat"></i> Cập nhật trạng thái</button>
                         </form>
                         <ul class="small text-muted mt-3 mb-0 ps-3">
@@ -86,6 +94,31 @@
                         </ul>
                     @else
                         <p class="small text-muted mb-0">Đơn đã ở trạng thái cuối, không thể thay đổi.</p>
+                    @endif
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header bg-white fw-semibold">Thanh toán</div>
+                <div class="card-body small">
+                    <p class="mb-1">Phương thức: <strong>{{ $order->paymentMethodLabel() }}</strong></p>
+                    <p class="mb-1">Tình trạng:
+                        <span class="badge text-bg-{{ $order->isPaid() ? 'success' : 'warning' }}">{{ $order->paymentStatusLabel() }}</span>
+                    </p>
+                    @if ($order->paid_at)
+                        <p class="mb-1 text-muted">Ghi nhận lúc {{ $order->paid_at->format('d/m/Y H:i') }}</p>
+                    @endif
+
+                    @if ($order->awaitsBankTransfer())
+                        <p class="text-muted mt-2 mb-2">Đối soát: số tiền <strong>{{ number_format($order->total, 0, ',', '.') }}₫</strong>, nội dung <code>{{ $order->transferContent() }}</code>.</p>
+                        <form action="{{ route('admin.orders.mark-paid', $order) }}" method="post"
+                              data-confirm="Xác nhận đã nhận {{ number_format($order->total, 0, ',', '.') }}₫ cho đơn {{ $order->code }}?">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-success w-100"><i class="bi bi-cash-coin"></i> Xác nhận đã nhận chuyển khoản</button>
+                        </form>
+                    @elseif (! $order->isBankTransfer() && ! $order->isPaid())
+                        <p class="text-muted mt-2 mb-0">COD: tự động chuyển “Đã thanh toán” khi đơn Hoàn thành.</p>
                     @endif
                 </div>
             </div>

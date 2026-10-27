@@ -20,6 +20,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/san-pham', [ProductController::class, 'index'])->name('products.index');
 Route::get('/san-pham/{product:slug}', [ProductController::class, 'show'])->name('products.show');
 
+Route::view('/lien-he', 'contact')->name('contact');
+
 // Chỉ dành cho khách chưa đăng nhập
 Route::middleware('guest')->group(function () {
     Route::get('/dang-ky', [RegisterController::class, 'create'])->name('register');
@@ -46,6 +48,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/don-hang', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/don-hang/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::patch('/don-hang/{order}/huy', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
 
 // Khu vực quản trị: bắt buộc đăng nhập + role ADMIN (kiểm tra ở server)
@@ -60,6 +63,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
     Route::patch('orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
+    Route::patch('orders/{order}/payment', [AdminOrderController::class, 'markPaid'])->name('orders.mark-paid');
 
     Route::get('customers', [AdminCustomerController::class, 'index'])->name('customers.index');
     Route::get('customers/{customer}', [AdminCustomerController::class, 'show'])->name('customers.show');

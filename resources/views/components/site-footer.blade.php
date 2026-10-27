@@ -21,6 +21,7 @@
                     <li><a href="{{ route('home') }}">Trang chủ</a></li>
                     <li><a href="{{ route('products.index') }}">Tất cả sản phẩm</a></li>
                     <li><a href="{{ route('products.index', ['sort' => 'price_asc']) }}">Hoa giá tốt</a></li>
+                    <li><a href="{{ route('contact') }}">Liên hệ & bản đồ</a></li>
                 </ul>
             </div>
 

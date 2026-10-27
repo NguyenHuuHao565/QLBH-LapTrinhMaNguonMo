@@ -42,7 +42,10 @@
                                         <td>{{ $order->placed_at->format('d/m/Y H:i') }}</td>
                                         <td class="text-center">{{ $order->items_count }}</td>
                                         <td class="text-end text-nowrap">{{ number_format($order->total, 0, ',', '.') }}₫</td>
-                                        <td><span class="status-badge status-{{ $order->status }}">{{ $order->statusLabel() }}</span></td>
+                                        <td>
+                                            <span class="status-badge status-{{ $order->status }}">{{ $order->statusLabel() }}</span>
+                                            <div class="small text-muted mt-1">{{ $order->isBankTransfer() ? 'Chuyển khoản' : 'COD' }} · {{ $order->paymentStatusLabel() }}</div>
+                                        </td>
                                         <td class="text-end"><a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-outline-bloom">Chi tiết</a></td>
                                     </tr>
                                 @endforeach

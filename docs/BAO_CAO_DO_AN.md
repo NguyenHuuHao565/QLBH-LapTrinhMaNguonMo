@@ -45,7 +45,7 @@
 ### 1.2. Mục tiêu
 
 1. Xây dựng website bán hoa có giao diện hiện đại, thân thiện, hiển thị tốt trên máy tính và điện thoại.
-2. Khách hàng có thể xem, tìm kiếm, lọc hoa; quản lý giỏ hàng; đặt hàng thanh toán khi nhận (COD); theo dõi đơn.
+2. Khách hàng có thể xem, tìm kiếm, lọc hoa; quản lý giỏ hàng; đặt hàng thanh toán khi nhận (COD) hoặc chuyển khoản qua mã QR; theo dõi và tự hủy đơn.
 3. Quản trị viên quản lý danh mục, sản phẩm (kèm ảnh), đơn hàng, khách hàng và xem thống kê doanh thu.
 4. Đảm bảo tính đúng đắn của dữ liệu: giá tính ở server, không bán vượt tồn kho, giữ lịch sử giá, chống đặt trùng.
 5. Áp dụng các biện pháp bảo mật cơ bản: hash mật khẩu, phân quyền phía server, CSRF, chống XSS/SQL injection, kiểm tra file upload.
@@ -53,7 +53,7 @@
 
 ### 1.3. Phạm vi
 
-- **Trong phạm vi:** website một cửa hàng; thanh toán COD; 2 vai trò người dùng (CUSTOMER, ADMIN); chạy trên môi trường local (Laragon).
+- **Trong phạm vi:** website một cửa hàng; thanh toán COD và chuyển khoản bằng mã QR (đối soát thủ công); 2 vai trò người dùng (CUSTOMER, ADMIN); chạy trên môi trường local (Laragon).
 - **Ngoài phạm vi:** thanh toán online, tính phí vận chuyển, mã giảm giá, gửi email/SMS, triển khai lên hosting thật.
 
 ---
@@ -77,7 +77,9 @@
 | FR03 | Xem chi tiết sản phẩm: ảnh, giá, giá khuyến mãi, mô tả, tồn kho, trạng thái còn/hết hàng | Tất cả |
 | FR04 | Giỏ hàng: thêm, sửa số lượng, xóa, xem tổng số lượng và tổng tiền | Tất cả |
 | FR05 | Đăng ký tài khoản khách hàng, đăng nhập, đăng xuất | Khách vãng lai |
-| FR06 | Đặt hàng COD: nhập người nhận, SĐT, địa chỉ, ngày giao, ghi chú | CUSTOMER |
+| FR06 | Đặt hàng: nhập người nhận, SĐT, địa chỉ, ngày giao, ghi chú; chọn COD hoặc chuyển khoản (hiện mã QR, số tiền, nội dung = mã đơn) | CUSTOMER |
+| FR06b | Tự hủy đơn khi đơn còn *Chờ xác nhận* và chưa thanh toán, có chọn lý do; tồn kho được hoàn ngay | CUSTOMER |
+| FR06c | Trang Liên hệ có bản đồ vị trí cửa hàng và nút chỉ đường | Tất cả |
 | FR07 | Trang xác nhận đặt hàng; lịch sử và chi tiết đơn của chính mình | CUSTOMER |
 | FR08 | Xem thông tin tài khoản | CUSTOMER |
 | FR09 | Dashboard: tổng sản phẩm, khách hàng, đơn hàng, doanh thu, đơn mới nhất | ADMIN |
@@ -183,8 +185,9 @@ Ngoài 5 bảng nghiệp vụ, Laravel tạo các bảng hệ thống: `sessions
 | Hoàn thành / Đã hủy | — (trạng thái cuối) |
 
 - **Hủy đơn** → hoàn lại tồn kho trong cùng transaction. Vì "Đã hủy" là trạng thái cuối nên không thể hủy hai lần để cộng kho hai lần.
-- **Hoàn thành** → `payment_status` chuyển `paid` (với COD, tiền được thu khi giao).
-- Khi đặt hàng, đơn COD luôn ở `payment_status = unpaid`.
+- **Hoàn thành** → đơn COD chuyển `payment_status = paid` (tiền thu khi giao). Đơn **chuyển khoản** phải được admin bấm *Xác nhận đã nhận chuyển khoản* (đối soát số tiền và nội dung = mã đơn) trước, nếu chưa thì không được Hoàn thành.
+- Khi đặt hàng, mọi đơn đều ở `payment_status = unpaid`.
+- **Khách tự hủy**: chỉ khi đơn còn *Chờ xác nhận* và chưa thanh toán; lưu lý do, người hủy (`cancelled_by`) và thời điểm (`cancelled_at`), hoàn kho trong cùng transaction.
 - Nếu hai quản trị viên cùng sửa một đơn, form gửi kèm trạng thái mà admin đang thấy; nếu khác trạng thái thực tế thì yêu cầu bị từ chối.
 
 **Quy tắc doanh thu:** doanh thu = tổng `total` của các đơn **Hoàn thành**. Đơn **Đã hủy** không bao giờ được tính; giá trị các đơn đang xử lý được hiển thị riêng.
@@ -216,7 +219,10 @@ Các điểm thiết kế chính:
 | Chi tiết sản phẩm | Ảnh lớn, giá, giá gốc gạch ngang, tồn kho, mô tả, chọn số lượng, thêm giỏ; gợi ý sản phẩm cùng danh mục | `/san-pham/{slug}` |
 | Giỏ hàng | Sửa số lượng, xóa, tổng tiền; cảnh báo nếu sản phẩm hết hàng/ngừng bán/không đủ hàng | `/gio-hang` |
 | Đăng ký / đăng nhập | Validation tiếng Việt; khóa tạm sau 5 lần đăng nhập sai | `/dang-ky`, `/dang-nhap` |
-| Thanh toán | Điền sẵn từ hồ sơ; người nhận, SĐT, địa chỉ, ngày giao (trong 60 ngày), ghi chú; COD | `/thanh-toan` |
+| Thanh toán | Điền sẵn từ hồ sơ; người nhận, SĐT, địa chỉ, ngày giao (trong 60 ngày), ghi chú; chọn COD hoặc chuyển khoản | `/thanh-toan` |
+| Thanh toán chuyển khoản | Hiện mã QR của cửa hàng, số tiền và nội dung cần ghi (mã đơn) ở trang xác nhận và trang chi tiết đơn | `/don-hang/{mã}` |
+| Hủy đơn | Nút *Hủy đơn hàng* + chọn lý do, chỉ hiện khi đơn còn chờ xác nhận và chưa thanh toán | `/don-hang/{mã}` |
+| Liên hệ & bản đồ | Bản đồ Leaflet + OpenStreetMap ghim vị trí Trường ĐH Công Thương TP.HCM, nút chỉ đường Google Maps | `/lien-he` |
 | Xác nhận đơn | Mã đơn, người nhận, tổng tiền, "Chưa thanh toán" | `/dat-hang-thanh-cong/{mã}` |
 | Đơn hàng của tôi | Danh sách và chi tiết đơn (giá lúc mua, trạng thái) | `/don-hang` |
 | Tài khoản | Thông tin cá nhân, lối tắt | `/tai-khoan` |
@@ -359,7 +365,7 @@ class EnsureUserIsAdmin
 
 ### 8.1. Phương pháp kiểm thử
 
-1. **Kiểm thử tự động (PHPUnit Feature test):** 70 test, 470 phép kiểm tra. Chạy trên SQLite trong bộ nhớ nên không ảnh hưởng database thật. Lệnh: `php artisan test`.
+1. **Kiểm thử tự động (PHPUnit Feature test):** 81 test, 534 phép kiểm tra. Chạy trên SQLite trong bộ nhớ nên không ảnh hưởng database thật. Lệnh: `php artisan test`.
 2. **Kiểm thử tích hợp trên MySQL thật:** gửi request HTTP (công cụ `curl`, có cookie phiên và CSRF token) vào website đang chạy để kiểm tra toàn luồng; dữ liệu thử được dọn sau khi kiểm tra.
 3. **Kiểm thử tranh chấp:** chạy 2 tiến trình PHP song song cùng mua sản phẩm còn 1 món trên MySQL.
 4. **Kiểm thử dò lỗi (fuzz):** gửi tham số bất thường (dạng mảng `?q[]=x`, chuỗi sai mã UTF-8, chuỗi chứa `<script>`) vào mọi trang.
@@ -376,7 +382,8 @@ class EnsureUserIsAdmin
 | Cửa hàng: tìm kiếm, lọc, sắp xếp, phân trang (`StorefrontTest`) | 6 | PASS 6/6 |
 | Bảo mật: XSS, tham số bất thường, UTF-8 (`SecurityTest`) | 3 | PASS 3/3 |
 | Test mẫu của Laravel | 2 | PASS 2/2 |
-| **Tổng** | **70** | **PASS 70/70 (470 assertions)** |
+| Thanh toán chuyển khoản, khách tự hủy đơn, trang bản đồ (`PaymentAndCancelTest`) | 11 | PASS 11/11 |
+| **Tổng** | **81** | **PASS 81/81 (534 assertions)** |
 
 ### 8.3. Các ca kiểm thử chính
 
@@ -442,7 +449,8 @@ class EnsureUserIsAdmin
 ### 9.1. Hạn chế
 
 - Ứng dụng đang dùng múi giờ **UTC**: giờ đặt hàng hiển thị lệch 7 tiếng và bộ lọc ngày trong quản trị tính theo ngày UTC. Cách sửa: `APP_TIMEZONE=Asia/Ho_Chi_Minh` (chưa áp dụng).
-- Chỉ hỗ trợ thanh toán COD; chưa có phí vận chuyển, mã giảm giá.
+- Thanh toán chuyển khoản dùng **mã QR tĩnh** nên khách phải tự nhập số tiền và nội dung; cửa hàng đối soát và xác nhận thủ công. Chưa tích hợp cổng thanh toán tự động (VNPay/MoMo API cần đăng ký mã merchant).
+- Chưa có phí vận chuyển, mã giảm giá.
 - Chưa có: quên mật khẩu, xác minh email, sửa hồ sơ, gửi email xác nhận đơn, nhật ký thay đổi trạng thái đơn.
 - Ảnh sản phẩm mẫu lấy từ Wikimedia Commons, chỉ mang tính minh họa — một số ảnh là tranh vẽ hoặc không khớp hoàn toàn với tên sản phẩm.
 - Giao diện tải Bootstrap và font qua CDN nên cần Internet.
@@ -489,7 +497,7 @@ Qua đồ án, nhóm vận dụng được mô hình MVC, Blade component, Eloqu
 | 5:30 – 6:00 | Phân quyền | Ở tài khoản khách, gõ `/admin` | Lỗi 403 do middleware `admin` chặn ở server, không chỉ ẩn nút |
 | 6:00 – 7:30 | Quản trị đơn | Cửa sổ admin: Dashboard → Đơn hàng → tìm mã đơn vừa đặt → chuyển Đã xác nhận → Đang giao → Hoàn thành → quay lại Dashboard | Quy tắc trạng thái; doanh thu chỉ tính đơn Hoàn thành |
 | 7:30 – 8:30 | Quản trị sản phẩm | Sửa giá một sản phẩm → mở lại đơn cũ (giá không đổi) → thêm sản phẩm mới có ảnh → ngừng kinh doanh một sản phẩm | Giữ giá lịch sử; kiểm tra file upload; không xóa cứng |
-| 8:30 – 9:30 | Kiểm thử | Terminal: `php vendor/bin/phpunit --testdox` | 70/70 test PASS, gồm test rollback và XSS |
+| 8:30 – 9:30 | Kiểm thử | Terminal: `php vendor/bin/phpunit --testdox` | 81/81 test PASS, gồm test rollback, XSS, hủy đơn |
 | 9:30 – 10:00 | Kết luận | — | Hạn chế và hướng phát triển |
 
 **Câu hỏi có thể gặp và gợi ý trả lời:**
@@ -546,7 +554,7 @@ php artisan key:generate
 php artisan storage:link
 php artisan migrate --seed      # tạo bảng + dữ liệu mẫu (in mật khẩu demo ra màn hình)
 php artisan serve --port=8090   # hoặc mở http://quanlybanhoa.test:8000 qua Apache
-php artisan test                # chạy 70 test tự động
+php artisan test                # chạy 81 test tự động
 ```
 
 ---

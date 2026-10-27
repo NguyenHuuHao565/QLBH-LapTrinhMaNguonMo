@@ -39,6 +39,7 @@ class Order extends Model
 
     public const PAYMENT_METHODS = [
         'cod' => 'Thanh toán khi nhận hàng (COD)',
+        'bank_transfer' => 'Chuyển khoản (MoMo / ngân hàng)',
     ];
 
     public const PAYMENT_STATUSES = [
@@ -85,6 +86,8 @@ class Order extends Model
         return [
             'delivery_date' => 'date',
             'placed_at' => 'datetime',
+            'paid_at' => 'datetime',
+            'cancelled_at' => 'datetime',
             'total' => 'integer',
         ];
     }
@@ -157,4 +160,39 @@ class Order extends Model
     {
         return self::PAYMENT_STATUSES[$this->payment_status] ?? $this->payment_status;
     }
+
+    public function isPaid(): bool
+    {
+        return $this->payment_status === 'paid';
+    }
+
+    public function isBankTransfer(): bool
+    {
+        return $this->payment_method === 'bank_transfer';
+    }
+
+    /**
+     * Khách chỉ được tự hủy khi đơn chưa được xác nhận và chưa thanh toán.
+     */
+    public function isCancellableByCustomer(): bool
+    {
+        return $this->status === 'pending' && ! $this->isPaid();
+    }
+
+    /**
+     * Đơn chuyển khoản đang chờ khách trả tiền: hiển thị mã QR.
+     */
+    public function awaitsBankTransfer(): bool
+    {
+        return $this->isBankTransfer() && ! $this->isPaid() && $this->status !== 'cancelled';
+    }
+
+    /**
+     * Nội dung chuyển khoản: mã đơn, để đối soát.
+     */
+    public function transferContent(): string
+    {
+        return $this->code;
+    }
+
 }

@@ -59,10 +59,11 @@ class OrderController extends Controller
             'status' => ['required', Rule::in(array_keys(Order::STATUSES))],
             // Trạng thái admin đang nhìn thấy, để phát hiện cập nhật chồng chéo
             'from' => ['required', Rule::in(array_keys(Order::STATUSES))],
-        ], [], ['status' => 'trạng thái mới']);
+            'cancel_reason' => ['nullable', 'string', 'max:255'],
+        ], [], ['status' => 'trạng thái mới', 'cancel_reason' => 'lý do hủy']);
 
         try {
-            $order = $updater->transition($order, $data['status'], $data['from']);
+            $order = $updater->transition($order, $data['status'], $data['from'], $data['cancel_reason'] ?? null);
         } catch (OrderStatusException $e) {
             return redirect()->route('admin.orders.show', $order)->with('error', $e->getMessage());
         }
@@ -70,8 +71,23 @@ class OrderController extends Controller
         $message = "Đã chuyển đơn {$order->code} sang “{$order->statusLabel()}”.";
         if ($order->status === 'cancelled') {
             $message .= ' Tồn kho đã được hoàn lại.';
+            if ($order->isPaid()) {
+                $message .= ' Khách đã chuyển khoản — cần hoàn tiền cho khách.';
+            }
         }
 
         return redirect()->route('admin.orders.show', $order)->with('status', $message);
+    }
+
+    public function markPaid(Order $order, OrderStatusUpdater $updater): RedirectResponse
+    {
+        try {
+            $order = $updater->markPaid($order);
+        } catch (OrderStatusException $e) {
+            return redirect()->route('admin.orders.show', $order)->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('admin.orders.show', $order)
+            ->with('status', "Đã xác nhận nhận tiền chuyển khoản cho đơn {$order->code}.");
     }
 }

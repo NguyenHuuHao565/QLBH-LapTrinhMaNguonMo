@@ -616,6 +616,44 @@ nav[role="navigation"] .small.text-muted { color: var(--muted) !important; }
 .payment-unpaid { background: #fff3d6; color: #8a5a00; }
 .payment-paid { background: var(--sage-light); color: #3c5a3a; }
 
+/* ---------- Chuyển khoản VietQR ---------- */
+.success-card-wide { max-width: 760px; }
+.bank-transfer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    background: var(--cream);
+    border: 1px dashed var(--sage);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+}
+.bank-qr { background: #fff; border-radius: 14px; padding: .5rem; flex: 0 0 auto; }
+.bank-qr img { display: block; width: 240px; height: auto; }
+.bank-info { flex: 1 1 260px; }
+.bank-info h3 { font-size: 1.2rem; margin-bottom: .3rem; }
+.bank-info dl { display: grid; grid-template-columns: 110px 1fr; gap: .35rem .8rem; margin-bottom: .8rem; }
+.bank-info dt { color: var(--muted); font-weight: 500; }
+.bank-info dd { margin: 0; word-break: break-word; }
+.text-bloom { color: var(--blush-dark); }
+
+/* ---------- Liên hệ & bản đồ ---------- */
+.shop-map {
+    height: 460px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background: var(--cream-2);
+    z-index: 0; /* bản đồ không đè lên menu dropdown */
+}
+.contact-info li { display: flex; gap: .7rem; margin-bottom: .9rem; }
+.contact-info i { color: var(--blush-dark); font-size: 1.1rem; }
+
+@media (max-width: 575.98px) {
+    .bank-qr { margin-inline: auto; }
+    .shop-map { height: 340px; }
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
     background: #2f3a2e;

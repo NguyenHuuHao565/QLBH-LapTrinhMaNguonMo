@@ -1,7 +1,7 @@
 <x-layout title="Đặt hàng thành công">
     <section class="section auth-section">
         <div class="container">
-            <div class="success-card">
+            <div @class(['success-card', 'success-card-wide' => $order->awaitsBankTransfer()])>
                 <i class="bi bi-check-circle-fill success-icon"></i>
                 <h1 class="auth-title">Đặt hàng thành công!</h1>
                 <p class="text-muted">Cảm ơn bạn đã tin chọn Bloomy. Chúng tôi sẽ gọi xác nhận đơn trong thời gian sớm nhất.</p>
@@ -20,6 +20,10 @@
                     <dt>Thanh toán</dt>
                     <dd>{{ $order->paymentMethodLabel() }} — {{ $order->paymentStatusLabel() }}</dd>
                 </dl>
+
+                @if ($order->awaitsBankTransfer())
+                    <x-bank-transfer :order="$order" class="mt-4 text-start" />
+                @endif
 
                 <div class="d-flex flex-wrap gap-2 justify-content-center mt-4">
                     <a href="{{ route('orders.show', $order) }}" class="btn btn-bloom">Xem chi tiết đơn hàng</a>

@@ -72,7 +72,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#lien-he">Liên hệ</a>
+                        <a class="nav-link @if (request()->routeIs('contact')) active @endif" href="{{ route('contact') }}">Liên hệ</a>
                     </li>
                 </ul>
 

@@ -14,4 +14,13 @@ class OrderPolicy
     {
         return $user->isAdmin() || $order->user_id === $user->id;
     }
+
+    /**
+     * Khách chỉ được tự hủy đơn của chính mình khi đơn còn chờ xác nhận và chưa thanh toán
+     * (điều kiện được kiểm tra lại trong transaction khi hủy).
+     */
+    public function cancel(User $user, Order $order): bool
+    {
+        return $order->user_id === $user->id && $order->isCancellableByCustomer();
+    }
 }

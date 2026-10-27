@@ -18,6 +18,23 @@
 
     <section class="section pt-4">
         <div class="container">
+            @if ($order->awaitsBankTransfer())
+                <div class="info-card mb-4">
+                    <h2 class="info-card-title">Thanh toán chuyển khoản</h2>
+                    <x-bank-transfer :order="$order" />
+                </div>
+            @endif
+
+            @if ($order->status === 'cancelled')
+                <div class="alert alert-secondary">
+                    <i class="bi bi-x-circle me-1"></i>
+                    Đơn đã được hủy {{ $order->cancelled_by === \App\Models\User::ROLE_CUSTOMER ? 'bởi bạn' : 'bởi cửa hàng' }}
+                    @if ($order->cancelled_at) lúc {{ $order->cancelled_at->format('H:i, d/m/Y') }}@endif.
+                    @if ($order->cancel_reason) Lý do: “{{ $order->cancel_reason }}”.@endif
+                    @if ($order->isPaid()) Cửa hàng sẽ liên hệ để hoàn tiền chuyển khoản cho bạn.@endif
+                </div>
+            @endif
+
             <div class="row g-4">
                 <div class="col-lg-7">
                     <div class="info-card">
@@ -61,6 +78,26 @@
                             <dd><span class="status-badge payment-{{ $order->payment_status }}">{{ $order->paymentStatusLabel() }}</span></dd>
                         </dl>
                     </div>
+
+                    @can('cancel', $order)
+                        <div class="info-card mt-4">
+                            <h2 class="info-card-title">Hủy đơn hàng</h2>
+                            <p class="text-muted small">Bạn có thể tự hủy khi đơn còn <strong>Chờ xác nhận</strong>. Sau khi cửa hàng xác nhận, vui lòng gọi hotline để được hỗ trợ.</p>
+                            <form action="{{ route('orders.cancel', $order) }}" method="post" data-confirm="Bạn chắc chắn muốn hủy đơn {{ $order->code }}?">
+                                @csrf
+                                @method('PATCH')
+                                <label for="reason" class="form-label">Lý do hủy <span class="text-muted">(không bắt buộc)</span></label>
+                                <select id="reason" name="reason" class="form-select mb-3 @error('reason') is-invalid @enderror">
+                                    <option value="">— Chọn lý do —</option>
+                                    @foreach ($cancelReasons as $reason)
+                                        <option value="{{ $reason }}">{{ $reason }}</option>
+                                    @endforeach
+                                </select>
+                                @error('reason') <div class="invalid-feedback d-block mb-2">{{ $message }}</div> @enderror
+                                <button type="submit" class="btn btn-outline-danger w-100"><i class="bi bi-x-circle me-1"></i> Hủy đơn hàng</button>
+                            </form>
+                        </div>
+                    @endcan
                 </div>
             </div>
         </div>
