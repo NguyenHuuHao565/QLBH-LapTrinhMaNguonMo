@@ -5,7 +5,10 @@
 {{-- Hướng dẫn chuyển khoản bằng mã QR tĩnh của cửa hàng: khách tự nhập số tiền và nội dung --}}
 <div {{ $attributes->merge(['class' => 'bank-transfer']) }}>
     <div class="bank-qr">
-        <img src="{{ asset($bank['qr_image']) }}" alt="Mã QR nhận tiền của {{ $bank['account_name'] }}" loading="lazy" width="240">
+        <a href="{{ asset($bank['qr_image']) }}" target="_blank" rel="noopener" title="Bấm để xem mã QR cỡ lớn">
+            <img src="{{ asset($bank['qr_image']) }}" alt="Mã QR nhận tiền của {{ $bank['account_name'] }}" width="300" height="319">
+        </a>
+        <div class="small text-muted text-center mt-1"><i class="bi bi-zoom-in"></i> Bấm vào mã để phóng to</div>
     </div>
     <div class="bank-info">
         <h3>Quét mã để chuyển khoản</h3>

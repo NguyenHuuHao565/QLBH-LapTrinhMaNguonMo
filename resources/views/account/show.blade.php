@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-7">
-                    <div class="info-card">
+                    <div class="info-card h-100">
                         <h2 class="info-card-title">Thông tin tài khoản</h2>
                         <dl class="info-list">
                             <dt>Họ và tên</dt>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="col-lg-5">
-                    <div class="info-card">
+                    <div class="info-card h-100">
                         <h2 class="info-card-title">Lối tắt</h2>
                         <div class="d-grid gap-2">
                             <a href="{{ route('orders.index') }}" class="btn btn-outline-bloom"><i class="bi bi-receipt me-1"></i> Đơn hàng của tôi</a>

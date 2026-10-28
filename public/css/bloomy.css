@@ -517,7 +517,7 @@ nav[role="navigation"] .small.text-muted { color: var(--muted) !important; }
 .auth-card .form-check-input:checked { background-color: var(--sage-dark); border-color: var(--sage-dark); }
 
 /* ---------- Tài khoản ---------- */
-.info-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; height: 100%; }
+.info-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
 .info-card-title { font-size: 1.3rem; margin-bottom: 1.2rem; }
 .info-list { display: grid; grid-template-columns: 140px 1fr; gap: .7rem 1rem; margin: 0; }
 .info-list dt { font-weight: 500; color: var(--muted); }
@@ -628,8 +628,8 @@ nav[role="navigation"] .small.text-muted { color: var(--muted) !important; }
     border-radius: var(--radius);
     padding: 1.2rem;
 }
-.bank-qr { background: #fff; border-radius: 14px; padding: .5rem; flex: 0 0 auto; }
-.bank-qr img { display: block; width: 240px; height: auto; }
+.bank-qr { flex: 0 1 300px; max-width: 100%; min-width: 0; }
+.bank-qr img { display: block; width: 300px; max-width: 100%; height: auto; border-radius: 18px; }
 .bank-info { flex: 1 1 260px; }
 .bank-info h3 { font-size: 1.2rem; margin-bottom: .3rem; }
 .bank-info dl { display: grid; grid-template-columns: 110px 1fr; gap: .35rem .8rem; margin-bottom: .8rem; }
